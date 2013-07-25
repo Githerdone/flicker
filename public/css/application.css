@@ -1,0 +1,60 @@
+html {
+  width: 90%;
+  position: relative;
+  left: 2%;
+  min-width: 900px;
+}
+
+#loginModal, #createModal {
+  width: 290px;
+  top: 100px;
+}
+
+.modal-header {
+  border-bottom: 2px solid #980000 !important;
+}
+
+#user {
+  color: white;
+  text-align: center;
+  margin-top: 11px;
+  margin-left: 33px;
+}
+
+#user_ul {
+  float: right;
+}
+
+#user span {
+  color: #CC66CC;
+}
+
+#header {
+  margin-left: 0px;
+  position: relative;
+  left: 4.5%;
+  margin-bottom: 15px;
+}
+
+#header h1 {
+  font-size: 52px;
+  height: 0px;
+  margin: -24px;
+  text-align: center;
+}
+
+#left_col {
+  background-color: rgba(136,136,136,.4);
+  border-radius: 6px;
+  width: 30%;
+  height: 800px;
+  display: inline-block;
+}
+
+#right_col {
+  background-color: rgba(136,136,136,.2);
+  border-radius: 6px;
+  display: inline-block;
+  width: 67%;
+  height: 800px;
+}
