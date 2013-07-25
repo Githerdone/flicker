@@ -19,6 +19,9 @@ require 'bcrypt'
 require 'sinatra'
 require "sinatra/reloader" if development?
 
+require 'carrierwave'
+require 'mini_magick'
+
 require 'erb'
 
 # Some helper constants for path-centric logic
@@ -32,3 +35,20 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
+
+
+ # if Rails.env.test? || Rails.env.cucumber?
+ #    config.storage = :file
+ #    config.enable_processing = false
+ #    config.root = "#{Rails.root}/tmp"
+ #  else
+ #    config.storage = :fog
+ #  end
+ 
+ #  config.cache_dir = "#{Rails.root}/tmp/uploads"                  # To let CarrierWave work on heroku
+ 
+
+  CarrierWave.configure do |config|
+      config.storage :file
+      config.enable_processing = false
+  end

@@ -1,7 +1,7 @@
 enable :sessions
 
 get '/' do
-  @posts = Post.all
+  # @posts = Post.all
   erb :index
 end
 

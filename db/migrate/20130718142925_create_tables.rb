@@ -3,21 +3,32 @@ class CreateTables < ActiveRecord::Migration
     create_table :users do |t|
       t.string :email
       t.string :password_hash
+
+      t.timestamps
     end
 
-    create_table :posts do |t|
+    create_table :albums do |t|
       t.string :title
-      t.string :body
       t.belongs_to :user
+
+      t.timestamps
+    end
+
+    create_table :photos do |t|
+      t.belongs_to :album
+      t.string :title
+      
+
+      t.timestamps
+    end
+
+    create_table :photos_tags do |t|
+      t.belongs_to :photo
+      t.belongs_to :tag
     end
 
     create_table :tags do |t|
-      t.string :tag
-    end
-
-    create_table :posts_tags do |t|
-      t.belongs_to :tag
-      t.belongs_to :post
+      t.string :name
     end
   end
 end

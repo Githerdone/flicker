@@ -17,6 +17,10 @@ gem 'rake', '10.0.3'
 gem 'bcrypt-ruby', '3.0.0'
 gem 'shotgun'
 
+# Use for uplodaing and cropping photo files
+gem 'carrierwave'
+gem 'mini_magick'
+
 group :test do
   gem 'faker'
   gem 'rspec'

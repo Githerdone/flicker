@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :albums
+  
   include BCrypt
-  has_many :posts
   
   def password
     @password ||= Password.new(password_hash)
