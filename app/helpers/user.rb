@@ -1,7 +1,12 @@
 helpers do
   
+
   def current_user
-    session[:id]
+    User.find_by_id(session[:id])
+  end
+
+  def logged_in?
+    !session[:id].nil?
   end
 
   def user
@@ -9,8 +14,6 @@ helpers do
   end
 
   def img(name)
-    '<p>hello</p>'
     "<img src='#{name}' alt='#{name}' />"
   end
-
 end

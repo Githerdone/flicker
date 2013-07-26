@@ -4,34 +4,28 @@ require 'mini_magick'
 class Upload < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   storage :file
+  after :store, :clean_cached_files
+  process :resize_to_fill => [500, 200]
 
-    after :store, :clear_cache
-
-  # remember the tmp file
- 
-  
-  def clear_cache(variable)
-    CarrierWave.clean_cached_files!
-  end
-  # before :store, :remember_cache_id
-  # after :store, :delete_tmp_dir
-
-  # # store! nil's the cache_id after it finishes so we need to remember it for deletion
-  # def remember_cache_id(new_file)
-  #   @cache_id_was = cache_id
-  # end
-
-  # def delete_tmp_dir(new_file)
-  #   # make sure we don't delete other things accidentally by checking the name pattern
-  #   if @cache_id_was.present? && @cache_id_was =~ /\A[\d]{8}\-[\d]{4}\-[\d]+\-[\d]{4}\z/
-  #     FileUtils.rm_rf(File.join(root, cache_dir, @cache_id_was))
-  #   end
-  # end
-
-   def store_dir
-    'public/images'
+  def clean_cached_files(variable)
+    FileUtils.rm_rf(Dir.glob('public/uploads/tmp/*'))
   end
 
+  def store_dir
+    'images'
+  end
+
+
+
+# def self.clean_cached_files!(seconds=60)
+#           Dir.glob(File.expand_path(File.join(cache_dir, '*'), CarrierWave.root)).each do |dir|
+#             time = dir.scan(/(\d+)-\d+-\d+/).first.map { |t| t.to_i }
+#             time = Time.at(*time)
+#             if time < (Time.now.utc - seconds)
+#               FileUtils.rm_rf(dir)
+#             end
+#           end
+#         end
 
 
 # process :resize_to_fill => [200, 200]
@@ -65,16 +59,16 @@ class Upload < CarrierWave::Uploader::Base
   # end
   
   # Process files as they are uploaded:
-  process :scale => [200, 300]
+  # process :scale => [200, 300]
   #
   # def scale(width, height)
   #   # do something
   # end
 
   # Create different versions of your uploaded files:
-  version :thumb do
-    process :scale => [50, 50]
-  end
+  # version :thumb do
+  #   process :scale => [50, 50]
+  # end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

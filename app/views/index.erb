@@ -9,9 +9,10 @@
 
   <div class="carousel-inner">
     <% @first_photo = @photos.shift %>
-    <div class="active item"><%= img(@first_photo.file) %></div>
+
+    <div class="active item" style='margin-left:220px;'><%= img(@first_photo.file) %></div>
     <% @photos.each do |photo| %>
-    <div class="item"><%= img(photo.file) %></div>
+    <div class="item" style='margin-left:220px;'><%= img(photo.file) %></div>
     <%end%>
   </div>
   <!-- Carousel nav -->
@@ -27,12 +28,23 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span2" id='left_col'>
-      <% if session[:image] %>
-      <div><%= img(session[:image]) %></div>
+      <form id='album'>
+        <p>Add a new Album</p>
+        <input type='text' name='title' placeholder='title'>
+        <button id='add_album' class='btn btn-warning'>add album</button></form>
+      <% if !current_user.nil? %>
+      <% if current_user.albums %>
+      <ul id='album_list'>
+      <% current_user.albums.each do |album| %>
+        <div><li><%= album.title %>: <span hidden> <%= album.id %></span>
+        <span><%= album.photos.length %> - photos<span></li><button id='delete_album' class='update_album' data-albumid='<%= album.id %>' class='btn btn-warning'>delete album</button><button id='add_photo' class='update_album' data-albumid='<%= album.id %>' class='btn btn-success'>add photo</button></div>
+        <%end%>
+      </ul>
+      <%end%>
       <%end%>
     </div>
     <div class="span10" id='right_col'>
-      <p>Image Uploader</p>
+      <p>Upload Your images Here</p>
       <form method='post' enctype='multipart/form-data'>
         <input type='file' name='filename'>
         <button class='btn btn-block btn-inverse'>Upload</button>
@@ -49,7 +61,7 @@
     <form id='login' method='post' action='/login'>
       <fieldset>
         <label for='email'>e-mail<span></span></label>
-        <input id='email' type='email' name='email' placeholder='e-mail' required>
+        <input id='email' type='email' name='email' placeholder='e-mail' required autofocus>
         <label for='password'>Password<span></span></label>
         <input id='password' type='password' name='password' placeholder='password' required>
         <label id='radio' class="checkbox"><input type="checkbox" name='keep_logged'>Keep me logged in</label>
@@ -69,7 +81,7 @@
       <form id='new_user' method='post' action='/new_user'>
         <fieldset>
           <label for='email'>e-mail<span></span></label>
-          <input id='email' type='email' name='email' placeholder='e-mail' required>
+          <input id='email' type='email' name='email' placeholder='e-mail' required autofocus>
           <label for='password'>Create Password<span></span></label>
           <input id='password' type='password' name='password' placeholder='password' required>
           <label for='verify_password'>Verify Password<span></span></label>

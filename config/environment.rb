@@ -50,7 +50,6 @@ require APP_ROOT.join('config', 'database')
 
   CarrierWave.configure do |config|
       config.storage :file
-      config.enable_processing = false
       config.root =  "#{Dir.pwd}/public/" 
       # config.autoload_paths += "#{Rails.root}/app/uploaders"
   end

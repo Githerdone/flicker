@@ -3,7 +3,6 @@ $(document).ready(function() {
   $('#create_li').on('click', function(){
     reset_create();
     $("#createModal").modal('show');
-     $('#email').focus();
 
     $('#new_user').on('submit', function(event){
       event.preventDefault();
@@ -51,7 +50,7 @@ function render_error(item){
 }
 
 function reset_create(){
-  $('#email').focus();
   $('#new_user label span').text('');
   $("#new_user")[0].reset();
+  $('#email').focus();
 }

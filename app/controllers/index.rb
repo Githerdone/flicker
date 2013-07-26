@@ -1,8 +1,18 @@
 enable :sessions
 
 get '/' do
-  # @posts = Post.all
-  erb :index
+  if !user.nil?
+    user = User.find(session[:id])
+    if user.albums
+      album = user.albums.first
+      if !album.nil? && album.photos.length > 0
+        @photos = album.photos
+      end
+    end
+    erb :index
+  else
+    erb :index
+  end
 end
 
 get '/login' do
