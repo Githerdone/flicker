@@ -3,6 +3,7 @@ $(document).ready(function() {
   $('#login_li').on('click', function(){
      reset_login();
     $("#loginModal").modal('show');
+     $('#email').focus();
   
     $('#login').on('submit', function(event){
       event.preventDefault();

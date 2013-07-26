@@ -8,4 +8,9 @@ helpers do
     session[:email]
   end
 
+  def img(name)
+    '<p>hello</p>'
+    "<img src='#{name}' alt='#{name}' />"
+  end
+
 end

@@ -10,7 +10,6 @@ get '/login' do
 end
 
 post '/login' do
-  p params
   user = User.login(params)
   if user
     session[:id] = user.id
@@ -21,12 +20,11 @@ post '/login' do
   end
 end
 
-
 post '/new_user' do
   user = User.create(params)
+  user.albums.create(title: "My First Album")
   session[:id] = user.id
   session[:email] = user.email
-  erb :index
 end
 
 get '/logout' do

@@ -3,6 +3,7 @@ $(document).ready(function() {
   $('#create_li').on('click', function(){
     reset_create();
     $("#createModal").modal('show');
+     $('#email').focus();
 
     $('#new_user').on('submit', function(event){
       event.preventDefault();

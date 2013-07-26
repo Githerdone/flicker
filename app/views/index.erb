@@ -1,19 +1,35 @@
+ <% if @photos %>
+ <div id="myCarousel" class="carousel slide">
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+  <!-- Carousel items -->
+
+  <div class="carousel-inner">
+    <% @first_photo = @photos.shift %>
+    <div class="active item"><%= img(@first_photo.file) %></div>
+    <% @photos.each do |photo| %>
+    <div class="item"><%= img(photo.file) %></div>
+    <%end%>
+  </div>
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+ <%end%>
+
 <header class='span9 hero-unit' id='header'>
   <h1>Welcome to Flicker jr.</h1>
 </header>
 
-
-
-
-
-
-
-
-
-
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span2" id='left_col'>
+      <% if session[:image] %>
+      <div><%= img(session[:image]) %></div>
+      <%end%>
     </div>
     <div class="span10" id='right_col'>
       <p>Image Uploader</p>
@@ -24,15 +40,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
 
 <div id='loginModal' style='display: none' class="modal hide fade">
   <div class="modal-header">

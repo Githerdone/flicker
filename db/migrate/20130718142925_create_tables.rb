@@ -17,7 +17,7 @@ class CreateTables < ActiveRecord::Migration
     create_table :photos do |t|
       t.belongs_to :album
       t.string :title
-      
+      t.string :file
 
       t.timestamps
     end

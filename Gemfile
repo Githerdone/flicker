@@ -18,8 +18,9 @@ gem 'bcrypt-ruby', '3.0.0'
 gem 'shotgun'
 
 # Use for uplodaing and cropping photo files
-gem 'carrierwave'
 gem 'mini_magick'
+gem 'carrierwave'
+
 
 group :test do
   gem 'faker'
