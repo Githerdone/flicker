@@ -37,7 +37,7 @@
       <ul id='album_list'>
       <% current_user.albums.each do |album| %>
         <div><li><%= album.title %>: <span hidden> <%= album.id %></span>
-        <span><%= album.photos.length %> - photos<span></li><button id='delete_album' class='update_album' data-albumid='<%= album.id %>' class='btn btn-warning'>delete album</button><button id='add_photo' class='update_album' data-albumid='<%= album.id %>' class='btn btn-success'>add photo</button></div>
+        <span><%= album.photos.length %> - photos<span></li><button id='update_album' data-albumid='<%= album.id %>' class='btn btn-warning'>delete album</button><button id='update_album' data-albumid='<%= album.id %>' class='btn btn-success'>add photo</button></div>
         <%end%>
       </ul>
       <%end%>

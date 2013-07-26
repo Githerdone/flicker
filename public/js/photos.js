@@ -1,6 +1,6 @@
 $(document).ready(function() {  
 
-  $('#delete_album').on('click', function(){
+  $('#update_album').on('click', function(){
     $.post('/delete_album', { id: $('#delete_album').data('albumid')});
   });
 
